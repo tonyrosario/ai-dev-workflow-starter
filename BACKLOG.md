@@ -25,6 +25,12 @@
 - **Rough scope:** Add `baseUrl` and `paths` to tsconfig.json; update existing imports.
 - **Priority rationale:** Low effort, improves DX, but not blocking anything.
 
+### Docker image vulnerability scanning
+- **Added:** 2026-03-04
+- **Context:** The Dockerfile uses `node:22-alpine` as a base image. Alpine images are minimal but can still carry CVEs in system packages or bundled libraries. Without scanning, vulnerabilities in the base image or build layers go undetected.
+- **Rough scope:** Add a scanning step using Docker Scout, Trivy, or Snyk. Can run locally (`docker scout cves` / `trivy image`) and/or as a CI step after the image build in the GitHub Actions workflow.
+- **Priority rationale:** Security hygiene for any containerized project; low effort to add once CI (TASK-007) is in place.
+
 ### npm audit in CI
 - **Added:** 2026-03-04
 - **Context:** No automated security scanning of dependencies.
