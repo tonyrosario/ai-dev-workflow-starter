@@ -36,6 +36,7 @@
 - **Context:** No automated security scanning of dependencies.
 - **Rough scope:** Add `npm audit --audit-level=moderate` step to CI workflow after TASK-007 lands.
 - **Priority rationale:** Quick add-on once CI exists.
+- **Completed:** 2026-03-04 — `npm audit --audit-level=moderate` step added to `.github/workflows/ci.yml` after the `npm ci` install step.
 
 ## Low Priority
 
