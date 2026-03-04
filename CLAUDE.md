@@ -77,4 +77,5 @@
 - Source of truth: `PLANS.md` (ADR/TASK/CONTRACT IDs). Agents read tasks from this file.
 - Stay inside assigned directories. No boundary crossing without architect approval.
 - Run lint + tests for your scope. Write reports to `reports/agents/TASK-###-<role>.md`.
+- Delegate TASKs by owner: SONNET-A → implementer, SONNET-B → tester, HAIKU-C → implementer (docs/tooling).
 - Agent role details are in `.claude/agents/*.md` — do not duplicate here.
