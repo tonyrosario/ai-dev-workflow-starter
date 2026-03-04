@@ -1,6 +1,16 @@
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export function createUser({ email, password } = {}) {
+interface CreateUserInput {
+  email?: string;
+  password?: string;
+}
+
+interface User {
+  email: string;
+  password: string;
+}
+
+export function createUser({ email, password }: CreateUserInput = {}): User {
   if (!email) {
     throw new Error('Email is required');
   }
