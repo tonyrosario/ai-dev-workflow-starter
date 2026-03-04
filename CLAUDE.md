@@ -86,3 +86,7 @@
 - Commit(s) proposed (Conventional Commits):
 - Risks / open questions:
 - Contract deviations: NONE | (explain)
+
+**Report persistence:** Every agent must write its report to
+`reports/agents/TASK-###-<role>.md` (e.g. `TASK-001-implementer.md`).
+Create the directory if it does not exist. Reports are tracked in git.

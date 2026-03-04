@@ -32,3 +32,9 @@ REPORT FORMAT (MANDATORY)
 - Commit(s) proposed (Conventional Commits):
 - Flake/determinism audit:
 - Contract deviations (must be NONE unless approved):
+
+REPORT PERSISTENCE (MANDATORY)
+After completing your task, write the report above to disk:
+- Path: `reports/agents/TASK-###-tester.md` (replace ### with the TASK ID)
+- Create the `reports/agents/` directory if it does not exist.
+- This file is the persistent artifact that OPUS and reviewers reference.
