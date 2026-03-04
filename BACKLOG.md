@@ -56,3 +56,9 @@
 - **Context:** No automated versioning or changelog generation.
 - **Rough scope:** Add changesets or release-please, wire into CI.
 - **Priority rationale:** Only needed when publishing packages.
+
+### Continuous dependency monitoring
+- **Added:** 2026-03-04
+- **Context:** `npm audit` in CI catches known vulnerabilities at build time, but doesn't alert on newly disclosed CVEs between builds. Continuous monitoring fills that gap.
+- **Rough scope:** Enable GitHub Dependabot (`dependabot.yml`) for automated version/security PRs. Optionally add Socket.dev or Snyk for supply chain attack detection.
+- **Priority rationale:** Dependabot is zero-cost and quick to enable, but not urgent until the project has real deployment targets.
