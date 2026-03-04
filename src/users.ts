@@ -1,4 +1,5 @@
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MIN_PASSWORD_LENGTH = 8;
 
 interface CreateUserInput {
   email?: string;
@@ -20,7 +21,7 @@ export function createUser({ email, password }: CreateUserInput = {}): User {
   if (!password) {
     throw new Error('Password is required');
   }
-  if (password.length < 8) {
+  if (password.length < MIN_PASSWORD_LENGTH) {
     throw new Error('Password must be at least 8 characters');
   }
   return { email, password };
