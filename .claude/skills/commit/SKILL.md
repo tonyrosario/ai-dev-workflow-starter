@@ -1,8 +1,8 @@
 ---
 name: commit
 description: Generate a conventional commit from staged changes
-disable-model-invocation: true
-allowed-tools: Bash(git diff*), Bash(git status*), Bash(git commit*)
+disable-model-invocation: false
+allowed-tools: Bash(git diff*), Bash(git status*), Bash(git log*), Bash(git commit*), Bash(git add*), AskUserQuestion
 ---
 
 ## Steps
