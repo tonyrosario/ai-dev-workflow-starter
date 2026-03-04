@@ -14,7 +14,9 @@
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test:check-location": "node scripts/check-test-locations.js",
+    "reports:validate": "node scripts/validate-reports.js"
   },
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"

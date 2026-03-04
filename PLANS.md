@@ -88,14 +88,14 @@ All agents must use these repo scripts (no ad-hoc commands):
 | TASK-008 | Add README.md | HAIKU-C | pending | — |
 | TASK-009 | Add Dockerfile + .dockerignore | SONNET-A | done | TASK-005 |
 | TASK-010 | Optimize CLAUDE.md for token efficiency | HAIKU-C | pending | — |
-| TASK-011 | Add test file location enforcement script | SONNET-A | pending | — |
+| TASK-011 | Add test file location enforcement script | SONNET-A | done | — |
 | TASK-012 | Wire test location check into pre-commit and CI | SONNET-B | pending | TASK-011 |
-| TASK-013 | Add ESLint complexity rules | SONNET-A | pending | — |
+| TASK-013 | Add ESLint complexity rules | SONNET-A | done | — |
 | TASK-014 | Add ESLint no-magic-numbers rule | SONNET-A | pending | TASK-013 |
 | TASK-015 | Extract magic number in users.ts | SONNET-A | pending | TASK-014 |
-| TASK-016 | Add Dependabot configuration | HAIKU-C | pending | — |
-| TASK-017 | Expand lint-staged to JSON and YAML | HAIKU-C | pending | — |
-| TASK-018 | Add report validation script | SONNET-A | pending | — |
+| TASK-016 | Add Dependabot configuration | HAIKU-C | done | — |
+| TASK-017 | Expand lint-staged to JSON and YAML | HAIKU-C | done | — |
+| TASK-018 | Add report validation script | SONNET-A | done | — |
 | TASK-019 | Add report frontmatter template | HAIKU-C | pending | TASK-018 |
 | TASK-020 | Wire report validation into CI | SONNET-B | pending | TASK-018 |
 | TASK-021 | Verify all quality checks pass end-to-end | SONNET-B | pending | TASK-012, TASK-015, TASK-017, TASK-020 |
