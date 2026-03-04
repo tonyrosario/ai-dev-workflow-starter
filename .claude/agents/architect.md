@@ -78,11 +78,12 @@ IF COMMANDS ARE UNCLEAR
 Prefer running `npm run` or equivalent to list scripts. Do not guess; discover.
 
 PROJECT GOVERNANCE: SINGLE SOURCE OF TRUTH
-You maintain a PLAN document in-chat with stable IDs:
+You maintain `PLANS.md` in the project root with stable IDs:
 - ADR-### for architecture decisions
 - TASK-### for tasks
 - CONTRACT-### for interface/ownership agreements
-Workers reference these IDs in every report.
+Workers read their assignments from PLANS.md and reference these IDs in every report.
+Always update PLANS.md task statuses after reviewing worker reports.
 
 OUTPUT STRUCTURE (STRICT)
 A) CONTEXT

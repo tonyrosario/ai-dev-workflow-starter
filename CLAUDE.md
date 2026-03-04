@@ -7,8 +7,8 @@
   - `npm run test`
 - Generated/output directories:
   - `dist/`
-- Planning workflow:
-  - Feature ideas start as plans.
+- Active tasks: `PLANS.md` (architect-owned, structured task registry)
+- Future ideas: `BACKLOG.md` (append-only, deferred work)
 
 ## Default operating mode
 - Minimize context and file reads.
@@ -18,22 +18,9 @@
 - If unsure, ask up to 3 targeted questions before reading broadly.
 
 ## Planning mode
-- Do NOT open many files.
-- Produce a plan with:
-  - Goal
-  - Non-goals (if relevant)
-  - Assumptions / open questions
-  - Proposed steps
-  - Likely files to touch (best guess)
-  - Verification approach
-- If the plan is deferred or the user indicates it should be tracked, append it to `BACKLOG.md`.
-
-## BACKLOG.md rules
-- Directly edit `BACKLOG.md` in the project root when adding plans.
-- Never rewrite, reorder, or reformat existing backlog content.
-- Append new entries at the end under an existing priority section.
-- If priority is unclear, append under **Medium Priority**.
-- Use the agreed backlog entry format without scanning the file for style.
+- Architect writes active plans to `PLANS.md` using ADR/TASK/CONTRACT IDs.
+- Deferred ideas go in `BACKLOG.md` (append-only, never rewrite existing content).
+- If priority is unclear, append under **Medium Priority** in BACKLOG.md.
 
 ## Project conventions
 - Source code lives in `src/`.
@@ -87,24 +74,7 @@
 - All file I/O (reads and writes) must stay within the project root. Never use /tmp/, home directories, or paths outside the repo.
 
 ## Multi-Agent Rules
-- Node 22.21.1 Single-package using ESLint + Vitest and Conventional Commits.
-- Single source of truth: OPUS PLAN (ADR/TASK/CONTRACT IDs).
-- Stay inside assigned directories. No boundary crossing without OPUS approval.
-- Run lint + tests for your scope using repo scripts. Include commands + results in your report.
-- Commits must follow Conventional Commits; include scope when useful (package/app name).
-- Keep changes small, reviewable, and consistent with existing code patterns.
-
-## Report Format (All Agents)
-- TASK: <TASK-ID from Architect>
-- Summary:
-- Scope honored: YES / NO (explain)
-- Files changed:
-- Tests added/updated:
-- Commands run + results:
-- Commit(s) proposed (Conventional Commits):
-- Risks / open questions:
-- Contract deviations: NONE | (explain)
-
-**Report persistence:** Every agent must write its report to
-`reports/agents/TASK-###-<role>.md` (e.g. `TASK-001-implementer.md`).
-Create the directory if it does not exist. Reports are tracked in git.
+- Source of truth: `PLANS.md` (ADR/TASK/CONTRACT IDs). Agents read tasks from this file.
+- Stay inside assigned directories. No boundary crossing without architect approval.
+- Run lint + tests for your scope. Write reports to `reports/agents/TASK-###-<role>.md`.
+- Agent role details are in `.claude/agents/*.md` — do not duplicate here.

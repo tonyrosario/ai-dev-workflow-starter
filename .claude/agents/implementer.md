@@ -18,7 +18,7 @@ HARD RULES
 - Prefer repo scripts; do not invent commands unless necessary and justified.
 
 WORKFLOW
-1) Read OPUS contract and relevant files in your allowed dirs.
+1) Read your assigned TASK from `PLANS.md` and relevant files in your allowed dirs.
 2) Implement the smallest change that meets acceptance criteria.
 3) Add tests (Vitest) including at least one edge/negative case.
 4) Run validation commands specified by OPUS (lint + test + any package-specific checks).
