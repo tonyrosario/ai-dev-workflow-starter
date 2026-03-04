@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { findViolations } from '../../scripts/check-test-locations.js';
+import { findViolations } from '../check-test-locations.js';
 
 describe('findViolations', () => {
   describe('correctly placed test files', () => {

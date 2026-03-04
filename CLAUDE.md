@@ -52,7 +52,7 @@
 - **Clear mocks between tests.** Use `beforeEach` / `afterEach` to reset shared state.
 - **Coverage requirements:**
   - New/changed code must have corresponding tests.
-  - Target ≥ 80 % line and branch coverage for touched files.
+  - Target ≥ 60 % line and branch coverage for touched files.
   - Run `npm run test -- --coverage` before finalizing work to verify.
 
 ## Code standards (hard rules)

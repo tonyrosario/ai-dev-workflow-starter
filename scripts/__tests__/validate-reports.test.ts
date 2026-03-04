@@ -4,7 +4,7 @@ import {
   validateFrontmatter,
   type Frontmatter,
   type ValidationError,
-} from '../../scripts/validate-reports.js';
+} from '../validate-reports.js';
 
 describe('parseFrontmatter', () => {
   it('returns null when file content has no frontmatter delimiters', () => {
