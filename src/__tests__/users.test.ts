@@ -24,15 +24,21 @@ describe('createUser', () => {
     });
 
     it('throws "Invalid email format" when email has no @', () => {
-      expect(() => createUser({ email: 'notanemail', password: 'secret12' })).toThrow('Invalid email format');
+      expect(() => createUser({ email: 'notanemail', password: 'secret12' })).toThrow(
+        'Invalid email format',
+      );
     });
 
     it('throws "Invalid email format" when email has no domain', () => {
-      expect(() => createUser({ email: 'user@', password: 'secret12' })).toThrow('Invalid email format');
+      expect(() => createUser({ email: 'user@', password: 'secret12' })).toThrow(
+        'Invalid email format',
+      );
     });
 
     it('throws "Invalid email format" when email has no TLD', () => {
-      expect(() => createUser({ email: 'user@domain', password: 'secret12' })).toThrow('Invalid email format');
+      expect(() => createUser({ email: 'user@domain', password: 'secret12' })).toThrow(
+        'Invalid email format',
+      );
     });
   });
 
@@ -42,12 +48,14 @@ describe('createUser', () => {
     });
 
     it('throws "Password is required" when password is an empty string', () => {
-      expect(() => createUser({ email: 'user@example.com', password: '' })).toThrow('Password is required');
+      expect(() => createUser({ email: 'user@example.com', password: '' })).toThrow(
+        'Password is required',
+      );
     });
 
     it('throws "Password must be at least 8 characters" when password is 7 characters', () => {
       expect(() => createUser({ email: 'user@example.com', password: '1234567' })).toThrow(
-        'Password must be at least 8 characters'
+        'Password must be at least 8 characters',
       );
     });
   });
