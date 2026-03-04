@@ -36,6 +36,7 @@
 All agents must use these repo scripts (no ad-hoc commands):
 - `npm run build` — compile TypeScript
 - `npm run test` — run Vitest
+- `npm run test:coverage` — run Vitest with coverage (enforces 80% thresholds)
 - `npm run test:watch` — Vitest in watch mode
 - `npm run lint` — ESLint
 - `npm run typecheck` — tsc --noEmit *(to be added in TASK-005)*
