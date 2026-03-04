@@ -1,3 +1,7 @@
+# Stryker mutation testing
+reports/mutation/
+reports/stryker-incremental.json
+
 # Begin Node
 # Logs
 logs

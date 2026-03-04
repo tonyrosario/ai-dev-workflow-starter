@@ -16,7 +16,9 @@
     "clean": "rm -rf dist",
     "prepare": "husky",
     "test:check-location": "node scripts/check-test-locations.js",
-    "reports:validate": "node scripts/validate-reports.js"
+    "reports:validate": "node scripts/validate-reports.js",
+    "test:mutate": "stryker run",
+    "test:mutate:incremental": "stryker run --incremental"
   },
   "env": {
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
@@ -27,6 +29,8 @@
   "devDependencies": {
     "@commitlint/cli": "^20.4.3",
     "@commitlint/config-conventional": "^20.4.3",
+    "@stryker-mutator/core": "^9.6.0",
+    "@stryker-mutator/vitest-runner": "^9.6.0",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
     "@typescript-eslint/parser": "^8.56.1",
     "@vitest/coverage-v8": "^4.0.18",

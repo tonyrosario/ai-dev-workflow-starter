@@ -5,8 +5,10 @@
 - Key commands:
   - `npm run build`
   - `npm run test`
+  - `npm run test:mutate` — Stryker mutation testing
 - Generated/output directories:
   - `dist/`
+  - `reports/mutation/`
 - Active tasks: `PLANS.md` (architect-owned, structured task registry)
 - Future ideas: `BACKLOG.md` (append-only, deferred work)
 

@@ -54,6 +54,12 @@
 - **Decision:** Add `*.json` and `*.yml` patterns to `.lintstagedrc` with `prettier --write`.
 - **Consequences:** Formatting consistency across all committed file types. Pre-commit matches CI expectations.
 
+### ADR-010: Mutation testing with StrykerJS + Vitest runner
+- **Status:** Accepted
+- **Context:** Coverage thresholds measure which code is exercised but not whether tests assert meaningful behavior. Mutation testing closes this gap.
+- **Decision:** Add `@stryker-mutator/core` + `@stryker-mutator/vitest-runner`. Configure with Vitest runner, 60% break threshold. Run weekly in a dedicated GitHub Actions workflow with `actions/cache` for incremental file persistence.
+- **Consequences:** Tests must kill mutants, not just touch lines. Weekly schedule keeps PR CI fast. Manual `workflow_dispatch` available for on-demand runs.
+
 ### ADR-009: Agent report validation via YAML frontmatter + CI script
 - **Status:** Accepted
 - **Context:** Agent reports are freeform Markdown with inconsistent structure. No machine-readable validation possible.
@@ -73,6 +79,8 @@ All agents must use these repo scripts (no ad-hoc commands):
 - `npm run format` — Prettier write *(to be added in TASK-001)*
 - `npm run format:check` — Prettier check *(to be added in TASK-001)*
 - `npm run clean` — remove dist/ *(to be added in TASK-005)*
+- `npm run test:mutate` — Stryker mutation testing *(added in TASK-023)*
+- `npm run test:mutate:incremental` — Stryker incremental mode *(added in TASK-023)*
 
 ## Task Summary
 
@@ -99,6 +107,12 @@ All agents must use these repo scripts (no ad-hoc commands):
 | TASK-019 | Add report frontmatter template | HAIKU-C | pending | TASK-018 |
 | TASK-020 | Wire report validation into CI | SONNET-B | pending | TASK-018 |
 | TASK-021 | Verify all quality checks pass end-to-end | SONNET-B | pending | TASK-012, TASK-015, TASK-017, TASK-020 |
+| TASK-022 | Register ADR-010 and Stryker tasks in PLANS.md | HAIKU-C | done | — |
+| TASK-023 | Install Stryker and create config | SONNET-A | done | TASK-022 |
+| TASK-024 | Validate Stryker baseline and document score | SONNET-B | done | TASK-023 |
+| TASK-025 | Add mutation testing GitHub Actions workflow | SONNET-B | done | TASK-024 |
+| TASK-026 | Update CLAUDE.md with Stryker references | HAIKU-C | done | TASK-022 |
+| TASK-027 | Enable incremental mode and adjust threshold | SONNET-A | done | TASK-024 |
 
 ## Task Details
 
@@ -405,3 +419,68 @@ All agents must use these repo scripts (no ad-hoc commands):
   - `npm run build` exits 0
 - **Validation:** Run all commands above in sequence
 - **Dependencies:** TASK-012, TASK-015, TASK-017, TASK-020
+
+---
+
+## Phase 3: Mutation Testing
+
+### TASK-022: Register ADR-010 and Stryker tasks in PLANS.md
+- **Owner:** HAIKU-C
+- **Scope:** Append ADR-010, add TASK-022–027 to task summary and details, update CONTRACT-001 with new npm scripts.
+- **Allowed files:** `PLANS.md`
+- **Acceptance criteria:** ADR-010 and all six tasks registered in PLANS.md.
+- **Validation:** Visual review
+- **Dependencies:** none
+
+### TASK-023: Install Stryker and create config
+- **Owner:** SONNET-A
+- **Scope:** Install `@stryker-mutator/core` + `@stryker-mutator/vitest-runner`, create `stryker.config.mjs`, add npm scripts, update `.gitignore`.
+- **Allowed files:** `package.json`, `stryker.config.mjs` (new), `.gitignore`
+- **Acceptance criteria:**
+  - `npm run test:mutate` runs, reports score, exits 0 if ≥60%
+  - `npm run test:mutate:incremental` available
+  - `reports/mutation/` and `reports/stryker-incremental.json` in `.gitignore`
+- **Validation:** `npm run test:mutate`
+- **Dependencies:** TASK-022
+
+### TASK-024: Validate Stryker baseline and document score
+- **Owner:** SONNET-B
+- **Scope:** Run `test:mutate`, document baseline score, verify incremental file creation, confirm tests pass.
+- **Allowed files:** `reports/agents/TASK-024-tester.md` (write-only)
+- **Acceptance criteria:**
+  - Baseline score documented (killed/survived/total)
+  - Incremental file verified
+  - Existing tests still pass
+  - Threshold ratchet recommendation if baseline > 60%
+- **Validation:** `npm run test:mutate && npm run test`
+- **Dependencies:** TASK-023
+
+### TASK-025: Add mutation testing GitHub Actions workflow
+- **Owner:** SONNET-B
+- **Scope:** Create `.github/workflows/mutation.yml` with weekly schedule, `workflow_dispatch`, `actions/cache` for incremental file.
+- **Allowed files:** `.github/workflows/mutation.yml` (new)
+- **Acceptance criteria:**
+  - Triggers: `schedule` (Monday 04:00 UTC) + `workflow_dispatch`
+  - Caches incremental file per branch
+  - Uploads mutation report artifact (14-day retention)
+  - Does NOT modify `ci.yml`
+- **Validation:** YAML syntax review; manual `workflow_dispatch` after merge
+- **Dependencies:** TASK-024
+
+### TASK-026: Update CLAUDE.md with Stryker references
+- **Owner:** HAIKU-C
+- **Scope:** Add `reports/mutation/` to generated/output dirs, add `test:mutate` to key commands.
+- **Allowed files:** `CLAUDE.md`
+- **Acceptance criteria:** CLAUDE.md lists `test:mutate` and `reports/mutation/`.
+- **Validation:** Visual review
+- **Dependencies:** TASK-022
+
+### TASK-027: Enable incremental mode and adjust threshold
+- **Owner:** SONNET-A
+- **Scope:** Flip `incremental: false` → `incremental: true` in `stryker.config.mjs`. Ratchet `break` threshold based on TASK-024 baseline.
+- **Allowed files:** `stryker.config.mjs`
+- **Acceptance criteria:**
+  - `incremental: true` with updated comment
+  - `break` threshold ratcheted if baseline significantly above 60%
+- **Validation:** `npm run test:mutate:incremental`
+- **Dependencies:** TASK-024

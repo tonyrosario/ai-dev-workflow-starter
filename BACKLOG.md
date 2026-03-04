@@ -70,3 +70,9 @@
 - **Rough scope:** When triggered, add Pact (or lighter alternative like msw + schema validation). Define consumer/provider contracts, set up Pact Broker or Pactflow, integrate verification into CI.
 - **Trigger condition:** Revisit when the project introduces an HTTP API layer (Express, Fastify, etc.) or begins consuming external service dependencies.
 - **Priority rationale:** Premature — no API surface exists. Defer until the trigger condition is met.
+
+### Mutation score PR comments and badge
+- **Added:** 2026-03-04
+- **Context:** Stryker produces `mutation.json` in the weekly workflow. This could be parsed to post scores as PR comments or generate a repo badge for visibility.
+- **Rough scope:** Add a workflow step that parses `reports/mutation/mutation.json` and posts a comment via `gh pr comment` or generates a badge SVG.
+- **Priority rationale:** Nice-to-have visibility; the HTML report artifact already provides full detail.
