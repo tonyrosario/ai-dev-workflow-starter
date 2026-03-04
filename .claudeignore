@@ -1,0 +1,32 @@
+# --- SECURITY & SECRETS ---
+**/.env*
+*.key
+*.pem
+secrets/
+credentials/
+config/secrets.yml
+.ssh/
+.aws/
+.config/
+
+# --- DEPENDENCIES & NOISE (Standard) ---
+**/node_modules/
+**/vendor/
+.venv/
+venv/
+__pycache__/
+
+# --- BUILD ARTIFACTS & CACHE (Noise Reduction) ---
+**/dist/
+**/build/
+.next/
+**/out/
+.cache/
+**/coverage/
+*.log
+npm-debug.log*
+
+# --- PROJECT SPECIFIC ---
+
+# Reference data (Hide from auto-indexing; read only on @request)
+**/docs/
