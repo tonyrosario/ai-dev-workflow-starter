@@ -63,3 +63,10 @@
 - **Context:** `npm audit` in CI catches known vulnerabilities at build time, but doesn't alert on newly disclosed CVEs between builds. Continuous monitoring fills that gap.
 - **Rough scope:** Enable GitHub Dependabot (`dependabot.yml`) for automated version/security PRs. Optionally add Socket.dev or Snyk for supply chain attack detection.
 - **Priority rationale:** Dependabot is zero-cost and quick to enable, but not urgent until the project has real deployment targets.
+
+### API contract testing (Pact or similar)
+- **Added:** 2026-03-04
+- **Context:** Contract testing validates service-to-service API boundaries. Currently the project has no HTTP layer, no REST/GraphQL APIs, no microservice boundaries, and no external service calls. Adding Pact now would introduce heavy dependencies (native binaries, broker infrastructure) with no consumer/provider relationship to validate.
+- **Rough scope:** When triggered, add Pact (or lighter alternative like msw + schema validation). Define consumer/provider contracts, set up Pact Broker or Pactflow, integrate verification into CI.
+- **Trigger condition:** Revisit when the project introduces an HTTP API layer (Express, Fastify, etc.) or begins consuming external service dependencies.
+- **Priority rationale:** Premature — no API surface exists. Defer until the trigger condition is met.
