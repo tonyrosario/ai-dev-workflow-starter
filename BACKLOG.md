@@ -25,11 +25,18 @@
 - **Rough scope:** Add `baseUrl` and `paths` to tsconfig.json; update existing imports.
 - **Priority rationale:** Low effort, improves DX, but not blocking anything.
 
+### Docker image vulnerability scanning
+- **Added:** 2026-03-04
+- **Context:** The Dockerfile uses `node:22-alpine` as a base image. Alpine images are minimal but can still carry CVEs in system packages or bundled libraries. Without scanning, vulnerabilities in the base image or build layers go undetected.
+- **Rough scope:** Add a scanning step using Docker Scout, Trivy, or Snyk. Can run locally (`docker scout cves` / `trivy image`) and/or as a CI step after the image build in the GitHub Actions workflow.
+- **Priority rationale:** Security hygiene for any containerized project; low effort to add once CI (TASK-007) is in place.
+
 ### npm audit in CI
 - **Added:** 2026-03-04
 - **Context:** No automated security scanning of dependencies.
 - **Rough scope:** Add `npm audit --audit-level=moderate` step to CI workflow after TASK-007 lands.
 - **Priority rationale:** Quick add-on once CI exists.
+- **Completed:** 2026-03-04 — `npm audit --audit-level=moderate` step added to `.github/workflows/ci.yml` after the `npm ci` install step.
 
 ## Low Priority
 
@@ -50,3 +57,9 @@
 - **Context:** No automated versioning or changelog generation.
 - **Rough scope:** Add changesets or release-please, wire into CI.
 - **Priority rationale:** Only needed when publishing packages.
+
+### Continuous dependency monitoring
+- **Added:** 2026-03-04
+- **Context:** `npm audit` in CI catches known vulnerabilities at build time, but doesn't alert on newly disclosed CVEs between builds. Continuous monitoring fills that gap.
+- **Rough scope:** Enable GitHub Dependabot (`dependabot.yml`) for automated version/security PRs. Optionally add Socket.dev or Snyk for supply chain attack detection.
+- **Priority rationale:** Dependabot is zero-cost and quick to enable, but not urgent until the project has real deployment targets.
