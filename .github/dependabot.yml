@@ -1,0 +1,33 @@
+version: 2
+updates:
+  # npm ecosystem: monthly cadence with package groups
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      eslint:
+        patterns:
+          - '@typescript-eslint/*'
+          - 'eslint*'
+      vitest:
+        patterns:
+          - 'vitest'
+          - '@vitest/*'
+      husky-commitlint:
+        patterns:
+          - 'husky'
+          - 'lint-staged'
+          - '@commitlint/*'
+      typescript:
+        patterns:
+          - 'typescript'
+          - 'typescript-eslint'
+    target-branch: main
+
+  # GitHub Actions ecosystem: monthly cadence
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    target-branch: main
