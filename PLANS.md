@@ -51,7 +51,7 @@ All agents must use these repo scripts (no ad-hoc commands):
 | TASK-001 | Add Prettier + EditorConfig | SONNET-A | done | — |
 | TASK-002 | Add eslint-config-prettier | SONNET-A | done | TASK-001 |
 | TASK-003 | Add Husky + lint-staged | SONNET-A | done | TASK-001 |
-| TASK-004 | Add commitlint | SONNET-A | pending | TASK-003 |
+| TASK-004 | Add commitlint | SONNET-A | done | TASK-003 |
 | TASK-005 | Add missing npm scripts | SONNET-A | done | — |
 | TASK-006 | Add Vitest coverage thresholds | SONNET-B | done | — |
 | TASK-007 | Add GitHub Actions CI workflow | SONNET-A | pending | TASK-001, TASK-005, TASK-006 |
