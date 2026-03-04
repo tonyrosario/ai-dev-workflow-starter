@@ -42,13 +42,31 @@
 - Test files use the `.test.ts` extension.
 - Never place test files in the same directory as source files.
 
-## Implementation mode
-- Work in tight loops:
+## Implementation mode (TDD)
+- Work in tight loops following Red-Green-Refactor:
   1) Identify the minimal file(s)
-  2) Implement changes
-  3) Run the relevant npm script(s)
-  4) Summarize changes and follow-ups
+  2) Write a failing test that describes the desired behavior
+  3) Run the test — confirm it fails (Red)
+  4) Implement the minimal code to make the test pass (Green)
+  5) Refactor after green — clean up while tests stay passing
+  6) Run the full relevant test suite and lint
+  7) Summarize changes and follow-ups
+- Never write production code without a failing test first.
 - Avoid pasting large logs. Summarize and reference filenames and commands instead.
+
+## Testing standards (hard rules)
+- **Test behavior, not implementation.** Focus on public APIs and observable outcomes.
+- **One behavior per test.** Keep tests focused and independent.
+- **Descriptive test names.** Names should describe the behavior under test
+  (e.g. `"returns empty array when no items match filter"`).
+- **Organize with `describe` blocks** that mirror the module/function structure.
+- **Factory pattern for test data.** Create `getMockX(overrides?: Partial<X>)` helpers
+  with sensible defaults. Keep tests DRY.
+- **Clear mocks between tests.** Use `beforeEach` / `afterEach` to reset shared state.
+- **Coverage requirements:**
+  - New/changed code must have corresponding tests.
+  - Target ≥ 80 % line and branch coverage for touched files.
+  - Run `npm run test -- --coverage` before finalizing work to verify.
 
 ## Code standards (hard rules)
 - TypeScript: no `any` (use generics or `unknown` with narrowing).
