@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { createUser } from './users.js';
+import { createUser } from '../users.js';
 
 describe('createUser', () => {
   describe('success', () => {
